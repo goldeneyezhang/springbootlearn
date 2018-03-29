@@ -22,6 +22,7 @@ public class User {
 	@Column
 	private BigDecimal balance;
 	
+	//getters and setters
 	public Integer getId() {
 		return this.id;
 	}
