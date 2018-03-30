@@ -1,6 +1,10 @@
 server:
  port: 8010
-      
+
+spring:
+ application:
+   name: microservice-consumer-movie
+         
 info:
  app:
   name: @project.artifactId@
@@ -11,3 +15,10 @@ info:
     
 user: 
  userServiceUrl: http://localhost:8000/
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+    instance:
+      perfer-ip-address: true
