@@ -1,4 +1,4 @@
-package application.model;
+package com.yibo.application.model;
 
 import java.math.BigDecimal;
 
