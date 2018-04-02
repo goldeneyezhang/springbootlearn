@@ -28,6 +28,9 @@ public class MovieController {
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 	
+	@Autowired
+	private UserFeignClient userFeignClient;
+	
 	@Value("${user.userServiceUrl}")
 	private String userServiceUrl;
 	
@@ -36,7 +39,10 @@ public class MovieController {
 		System.out.println(userServiceUrl);
 		return this.restTemplate.getForObject("http://microservice-provider-user/"+id, User.class);
 	}
-	
+	@GetMapping("/user2/{id}")
+	public User findByIdFeign(@PathVariable Integer id) {
+		return this.userFeignClient.findById(id);
+	}
 	//@GetMapping("/user-instance")
 	//public List<ServiceInstance> showInfo(){
 		//return this.discoveryClient.getInstances("microservice-provider-user");

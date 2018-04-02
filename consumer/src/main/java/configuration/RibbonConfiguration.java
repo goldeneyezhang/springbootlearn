@@ -1,7 +1,6 @@
 package configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,7 +11,6 @@ import com.netflix.loadbalancer.PingUrl;
 import com.netflix.loadbalancer.RandomRule;
 
 @Configuration
-@ExcudeAnnotation
 public class RibbonConfiguration {
 	@Autowired
 	  //IClientConfig ribbonClientConfig;
