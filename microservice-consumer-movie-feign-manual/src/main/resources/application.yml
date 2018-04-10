@@ -14,7 +14,7 @@ info:
     target: @java.version@
     
 user: 
- userServiceUrl: http://localhost:8000/
+ userServiceUrl: http://microservice-provider-user/
  
 eureka:
   client:
@@ -26,3 +26,8 @@ eureka:
 logging:
   level:
    com.yibo.application.controller.UserFeignClient: DEBUG
+   
+hystrix:
+  metrics:
+    enabled: true
+    polling-interval-ms: 2000

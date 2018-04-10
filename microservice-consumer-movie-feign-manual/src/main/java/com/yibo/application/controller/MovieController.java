@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.appinfo.InstanceInfo;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.yibo.application.model.User;
 
 import feign.Client;
@@ -43,6 +44,9 @@ public class MovieController {
 	
 	private UserFeignClient adminUserFeignClient;
 	
+	@Value("${user.userServiceUrl}")
+	private String userServiceUrl;
+	
 	@Autowired
 	public MovieController(Decoder decoder,Encoder encoder,Client client,Contract contract) {
 		//这边的decoder、 encoder、client、contract，可以Debug看看是什么实例
@@ -54,7 +58,19 @@ public class MovieController {
 				.contract(contract).requestInterceptor(new BasicAuthRequestInterceptor("admin","password2")).
 				target(UserFeignClient.class,"http://microservice-provider-user/");
 	}
-
+	
+	
+	@GetMapping("/user/{id}")
+	public User findById(@PathVariable Integer id) {
+		return this.restTemplate.getForObject(userServiceUrl+id, User.class);
+	}
+	public User findByIdFallback(Integer id) {
+		User user= new User();
+		user.setId(-1);
+		user.setNamecn("默认用户");
+		return user;
+	}
+	@HystrixCommand(fallbackMethod = "findByIdFallback")
 	@GetMapping("/user-user/{id}")
 	public User findByIdUser(@PathVariable Integer id) {
 		return this.userUserFeignClient.findById(id);

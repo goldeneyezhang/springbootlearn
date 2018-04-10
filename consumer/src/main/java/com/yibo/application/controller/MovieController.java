@@ -15,6 +15,7 @@ import com.yibo.application.model.User;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.http.HttpHeaders;
 
 @RestController
 public class MovieController {
@@ -36,7 +37,8 @@ public class MovieController {
 	
 	@GetMapping("/user/{id}")
 	public User findById(@PathVariable Integer id) {
-		System.out.println(userServiceUrl);
+		HttpHeaders headers = new HttpHeaders();
+		
 		return this.restTemplate.getForObject("http://microservice-provider-user/"+id, User.class);
 	}
 	@GetMapping("/user2/{id}")
@@ -48,14 +50,14 @@ public class MovieController {
 		//return this.discoveryClient.getInstances("microservice-provider-user");
 	//}
 	/**
-	 * ²éÑ¯microservice-provider-user·þÎñµÄÐÅÏ¢²¢·µ»Ø
+	 * ï¿½ï¿½Ñ¯microservice-provider-userï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	@GetMapping("/log-instance")
 	public void logUserInstance(){
 		//return this.discoveryClient.getInstances("microservice-provider-user");
 		ServiceInstance serviceInstance = this.loadBalancerClient.choose("microservice-provider-user");
-		//´òÓ¡µ±Ç°Ñ¡ÔñµÄÊÇÄÄ¸ö½Úµã
+		//ï¿½ï¿½Ó¡ï¿½ï¿½Ç°Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Úµï¿½
 		MovieController.LOGGER.info("{}:{}:{}",serviceInstance.getServiceId(),serviceInstance.getHost(),serviceInstance.getPort());
 	}
 }
