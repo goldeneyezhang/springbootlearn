@@ -25,7 +25,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.netflix.feign.FeignClientsConfiguration;
 import org.springframework.context.annotation.Import;
-@Import(FeignClientsConfiguration.class)
+//@Import(FeignClientsConfiguration.class)
 @RestController
 public class MovieController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MovieController.class);
@@ -38,16 +38,16 @@ public class MovieController {
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 	
-	//@Autowired
-	//private UserFeignClient userFeignClient;
-	private UserFeignClient userUserFeignClient;
+	@Autowired
+	private UserFeignClient userFeignClient;
+	//private UserFeignClient userUserFeignClient;
 	
-	private UserFeignClient adminUserFeignClient;
+	//private UserFeignClient adminUserFeignClient;
 	
 	@Value("${user.userServiceUrl}")
 	private String userServiceUrl;
 	
-	@Autowired
+	/*@Autowired
 	public MovieController(Decoder decoder,Encoder encoder,Client client,Contract contract) {
 		//这边的decoder、 encoder、client、contract，可以Debug看看是什么实例
 		this.userUserFeignClient = Feign.builder().client(client).encoder(encoder).decoder(decoder)
@@ -57,7 +57,7 @@ public class MovieController {
 		this.adminUserFeignClient = Feign.builder().client(client).encoder(encoder).decoder(decoder)
 				.contract(contract).requestInterceptor(new BasicAuthRequestInterceptor("admin","password2")).
 				target(UserFeignClient.class,"http://microservice-provider-user/");
-	}
+	}*/
 	
 	
 	@GetMapping("/user/{id}")
@@ -70,15 +70,15 @@ public class MovieController {
 		user.setNamecn("默认用户");
 		return user;
 	}
-	@HystrixCommand(fallbackMethod = "findByIdFallback")
+	//@HystrixCommand(fallbackMethod = "findByIdFallback")
 	@GetMapping("/user-user/{id}")
 	public User findByIdUser(@PathVariable Integer id) {
-		return this.userUserFeignClient.findById(id);
+		return this.userFeignClient.findById(id);
 	}
-	@GetMapping("/user-admin/{id}")
+	/*@GetMapping("/user-admin/{id}")
 	public User findByIdAdmin(@PathVariable Integer id) {
 		return this.adminUserFeignClient.findById(id);
-	}
+	}*/
 	/**
 	 * ��ѯmicroservice-provider-user�������Ϣ������
 	 * @return
