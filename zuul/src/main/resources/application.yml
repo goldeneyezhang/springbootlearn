@@ -14,7 +14,7 @@ info:
     target: @java.version@
     
 user: 
- userServiceUrl: http://microservice-provider-user/
+ userServiceUrl: http://microservice-gateway-zuul/
  
 eureka:
   client:
@@ -26,4 +26,9 @@ eureka:
 logging:
   level:
    com.yibo.application.controller.UserFeignClient: DEBUG
+   
+    
+management:
+  security:
+    enabled: false
   

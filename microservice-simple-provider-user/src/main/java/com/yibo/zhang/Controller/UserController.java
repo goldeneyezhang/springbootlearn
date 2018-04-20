@@ -26,7 +26,7 @@ public class UserController {
 	
 	@GetMapping("/{id}")
 	public User FindUser(@PathVariable Integer id) {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		/*Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if(principal instanceof UserDetails) {
 			UserDetails user = (UserDetails) principal;
 			Collection<? extends GrantedAuthority> collection = user.getAuthorities();
@@ -37,7 +37,7 @@ public class UserController {
 		} else {
 			//do other things
 			
-		}
+		}*/
 		User findOne=userRepository.findOne(id);
 		return findOne;
 	}

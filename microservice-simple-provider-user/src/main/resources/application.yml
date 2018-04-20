@@ -35,3 +35,11 @@ eureka:
       perfer-ip-address: true
       metadataMap:
         instanceId: ${spring.application.name}:${random.value}
+        
+security:
+  basic:
+    enabled: false
+    
+management:
+  security:
+    enabled: false
