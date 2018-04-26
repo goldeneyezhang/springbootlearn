@@ -1,0 +1,29 @@
+server:
+ port: 8050
+
+spring:
+ application:
+   name: microservice-file-upload
+         
+info:
+ app:
+  name: @project.artifactId@
+  encoding: @project.build.sourceEncoding@
+  java: 
+    source: @java.version@
+    target: @java.version@
+    
+user: 
+ userServiceUrl: http://microservice-provider-user/
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
+    instance:
+      perfer-ip-address: true
+      
+http:
+  multipart:
+    max-file-size: 2000MB
+    max-request-size: 2500MB 
