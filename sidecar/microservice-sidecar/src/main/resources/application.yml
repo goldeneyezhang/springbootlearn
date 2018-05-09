@@ -1,0 +1,19 @@
+server:
+ port: 8070
+spring:
+ application:
+   name: microservice-sidecar-node-service
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@password123:8762/eureka/
+    instance:
+      perfer-ip-address: true
+      metadataMap:
+        instanceId: ${spring.application.name}:${random.value}
+
+sidecar:
+  port: 8060 #nodejs微服务的端口
+  health-uri: http://localhost:8060/health.json #nodejs微服务的健康检查URL
+        
