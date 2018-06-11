@@ -1,4 +1,4 @@
-package com.yibo;
+package com.yibo.microservice_config_server2;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
