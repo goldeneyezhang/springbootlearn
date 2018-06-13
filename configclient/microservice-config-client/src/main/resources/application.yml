@@ -1,2 +1,6 @@
 server:
  port: 8095
+ 
+management:
+  security:
+    enabled: false
