@@ -1,0 +1,22 @@
+server:
+ port: 8080
+
+spring:
+ application:
+   name: microservice-config-server-encryption
+         
+ cloud:
+  config:
+    server:
+      git:
+        #配置仓库的地址
+        uri: https://gitee.com/goldeneyezhang/spring-cloud-config-repo
+        username: 
+        password: 
+      health:
+        repositories:
+          a-foo:
+            label: config-label-v2.0
+            name: microservice-foo
+            profiles: dev
+            
