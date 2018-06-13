@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfigClientController {
 	 @Value("${profile}")
 	 private String profile;
+	 @Value("${config}")
+	 private String config;
 
   @GetMapping("/profile")
   public String hello() {
-    return this.profile;
+    return this.profile+","+this.config;
   }
 }
