@@ -1,0 +1,45 @@
+server:
+ port: 8000
+spring:
+ application:
+   name: microservice-provider-user-trace
+ jpa:
+  generate-ddl: false
+  show-sql: true
+  hibernate:
+    ddl-auto: none
+  datasource:  #指定数据源
+    platform: h2   #指定数据源类型
+    schema: classpath:schema.sql #指定h2 数据库的建表脚本
+    data: classpath:data.sql #指定h2数据库的数据脚本
+  logging:
+    level:
+      root: INFO
+      org.hibernate: INFO
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+      org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+      org.springframeowrk.web.servlet.DispatcherServlet: DEBUG
+info:
+ app:
+  name: @project.artifactId@
+  encoding: @project.build.sourceEncoding@
+  java: 
+    source: @java.version@
+    target: @java.version@
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@password123:8762/eureka/
+    instance:
+      perfer-ip-address: true
+      metadataMap:
+        instanceId: ${spring.application.name}:${random.value}
+        
+security:
+  basic:
+    enabled: false
+    
+management:
+  security:
+    enabled: false

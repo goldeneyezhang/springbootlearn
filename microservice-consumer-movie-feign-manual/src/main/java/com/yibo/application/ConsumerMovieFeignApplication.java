@@ -17,13 +17,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 @EnableHystrixDashboard
 @EnableFeignClients
-public class ConsumerMovieApplication {
+public class ConsumerMovieFeignApplication {
 	@Bean
 	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
 	public static void main(String[] args) {
-		SpringApplication.run(ConsumerMovieApplication.class, args);
+		SpringApplication.run(ConsumerMovieFeignApplication.class, args);
 	}
 }
