@@ -2,7 +2,7 @@ server:
  port: 8000
 spring:
  application:
-   name: microservice-provider-user-trace
+   name: microservice-provider-user
  jpa:
   generate-ddl: false
   show-sql: true
@@ -18,7 +18,8 @@ spring:
       org.hibernate: INFO
       org.hibernate.type.descriptor.sql.BasicBinder: TRACE
       org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-      org.springframeowrk.web.servlet.DispatcherServlet: DEBUG
+      org.springframework.web.servlet.DispatcherServlet: DEBUG
+      org.springframework.cloud.sleuth: DEBUG
 info:
  app:
   name: @project.artifactId@

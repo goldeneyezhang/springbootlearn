@@ -1,0 +1,40 @@
+server:
+ port: 8012
+
+spring:
+ application:
+   name: microservice-consumer-movie
+         
+info:
+ app:
+  name: @project.artifactId@
+  encoding: @project.build.sourceEncoding@
+  java: 
+    source: @java.version@
+    target: @java.version@
+    
+user: 
+ userServiceUrl: http://microservice-provider-user/
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
+    instance:
+      perfer-ip-address: true
+      
+logging:
+  level:
+   root: info
+   com.yibo.application.controller.UserFeignClient: DEBUG
+   org.springframework.web.servlet.DispatcherServlet: DEBUG
+   org.springframework.cloud.sleuth: DEBUG
+   
+hystrix:
+  metrics:
+    enabled: true
+    polling-interval-ms: 2000
+    
+feign:
+  hystrix:
+    enabled: true
