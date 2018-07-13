@@ -1,4 +1,4 @@
-package com.yibo.zhang.Controller;
+package com.yibo.simple_provider_user_trace.Controller;
 
 import java.util.List;
 
@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yibo.zhang.DAO.UserRepository;
-import com.yibo.zhang.Model.User;
+import com.yibo.simple_provider_user_trace.DAO.UserRepository;
+import com.yibo.simple_provider_user_trace.Model.User;
+
 
 
 @RestController

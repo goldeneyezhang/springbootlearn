@@ -41,7 +41,7 @@ public class AggregationController {
 							  });
 	}
 	public DeferredResult<HashMap<String,User>> toDeferredResult(Observable<HashMap<String,User>> details){
-		DeferredResult<HashMap<String,User>> result = new DeferredResult<>();
+		final DeferredResult<HashMap<String,User>> result = new DeferredResult<>();
 		//订阅
 		details.subscribe(new Observer<HashMap<String,User>>(){
 			@Override
